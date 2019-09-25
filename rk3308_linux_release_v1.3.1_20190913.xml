@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote fetch="../../" name="rk" review="https://10.10.10.29"/>
+  
+  <default remote="rk" sync-j="4"/>
+  
+  <project name="android/rk/platform/system/rk_tee_user" path="external/security/rk_tee_user" revision="44def95246908e23c1f415f3a25520308beb8ccf" upstream="develop-next"/>
+  <project name="android/rk/u-boot-stable" path="u-boot" revision="41fad755507c0ac59ed3b56d0721a03a82221182" upstream="stable-4.4-rk3308-linux-1.2.3"/>
+  <project name="linux/buildroot/dl" path="buildroot/dl" revision="ddfbe30ea232f63b2080e85907ec308ad913e43e" upstream="master"/>
+  <project name="linux/device/rockchip" path="device/rockchip" revision="1c1c862772a66d3a201fe3a4d5bc97cf8f23e8f5" upstream="stable-rk3308-v1.2.3-20181218">
+    <linkfile dest="mkfirmware.sh" src="rk3308/mkfirmware.sh"/>
+    <linkfile dest="build.sh" src="common/build.sh"/>
+    <linkfile dest="rkflash.sh" src="common/rkflash.sh"/>
+    <linkfile dest="device/rockchip/.BoardConfig.mk" src="rk3308/BoardConfig.mk"/>
+  </project>
+  <project name="linux/docs" path="docs" revision="8856c92ffabe347ef89a2b69f543966578786d7f" upstream="master"/>
+  <project name="linux/external/DuerClientSDK" path="external/DuerClientSDK" revision="e366033a83adb6187ee765915696d70cd36b4231" upstream="master_64bit"/>
+  <project name="linux/external/LocalPlayer" path="external/LocalPlayer" revision="e7d5cc72e5f0da13f2765aa02bd22d03ebc82750" upstream="master"/>
+  <project name="linux/external/WakeWordAgent" path="external/wakeWordAgent" revision="4a5a3c2d9d991e392894d1e5345b7487655d3cc6" upstream="master"/>
+  <project name="linux/external/alsa-config" path="external/alsa-config" revision="5a80dbcff93b5db40310910835649277f60048c4" upstream="master"/>
+  <project name="linux/external/app" path="external/app" revision="41fc489c1952a6e241027f9106b7ce13687690cb" upstream="master"/>
+  <project name="linux/external/bluetooth_bsa" path="external/bluetooth_bsa" revision="c1bc27bf435715541b1f9a76de2a5adcb79ef0eb" upstream="master"/>
+  <project name="linux/external/bluez-alsa" path="external/bluez-alsa" revision="06defedfb76083c198eeea9323315f2e5d2dc3b1" upstream="master"/>
+  <project name="linux/external/broadcom_bsa" path="external/broadcom_bsa" revision="ff4832228850eec323db28c6271c21893d6f078c" upstream="master"/>
+  <project name="linux/external/cae_vad" path="external/cae_vad" revision="86f5f3d4616888feea0c3916a9663f29a3af28ba" upstream="master"/>
+  <project name="linux/external/deviceio_release" path="external/deviceio" revision="bf0c87d144448d721064ffe82b33a2ba82731a3c" upstream="master"/>
+  <project name="linux/external/eq_drc_process" path="external/eq_drc_process" revision="a0df8b3a5d5f9fab3ca41e76f106086c1ab6b2bd" upstream="master"/>
+  <project name="linux/external/iflytekSDK" path="external/iflytekSDK" revision="cb2d4b5b6cc3bc4122fefb19fdf84db751ea09f1" upstream="master_64bit"/>
+  <project name="linux/external/ipc_share_memory" path="external/ipc_share_memory" revision="7e7c3de48f72f55d184e3705ab5a170ce815756a" upstream="master"/>
+  <project name="linux/external/ladspaSDK" path="external/ladspaSDK" revision="09214905bdd4544bea996d61cc5895ddb121e939" upstream="master"/>
+  <project name="linux/external/minigui" path="external/minigui" revision="caa4832ab2a4eb8e88e30b7a07efb4ce308cedba" upstream="master"/>
+  <project name="linux/external/minigui_desktop" path="external/minigui_desktop" revision="0d20bd6913ecd72a0eae80baec3e48ad15945bf2" upstream="master"/>
+  <project name="linux/external/rk_hw_vad" path="external/rk_hw_vad" revision="2fa6aaf920a6e8a9912b0407ba4f50b9c6e96b10" upstream="master"/>
+  <project name="linux/external/rk_pcba_test" path="external/rk_pcba_test" revision="7d97b390d9a0817c2573a77a6178e03b96523334" upstream="rk3308"/>
+  <project name="linux/external/rk_webui" path="external/rk_webui" revision="23d1035aede0b74ae119b8bd65cf0ed93c4100a6" upstream="master"/>
+  <project name="linux/external/rkscript" path="external/rkscript" revision="8bb6180dfff6850b783ca8ff33a274e2ac328e59" upstream="master"/>
+  <project name="linux/external/rkupdate" path="external/rkupdate" revision="000bc14833c2fa12ba45e9f87e0775977485b4f1" upstream="master"/>
+  <project name="linux/external/rkwifibt" path="external/rkwifibt" revision="429b6868e58a59abee6b84a78e81ffc5c502d7fd" upstream="master"/>
+  <project name="linux/external/rtc_demo" path="external/rtc_demo" revision="e1e8f6704a31b36982745f7627bc9b8959f54157" upstream="master"/>
+  <project name="linux/external/softapDemo" path="external/softapDemo" revision="4c7d1bd3d28df276d263f49324b022b44b3a1c85" upstream="master"/>
+  <project name="linux/external/softapServer" path="external/softapServer" revision="9158517316a050190273c6809ea88467a4276e16" upstream="master"/>
+  <project name="linux/external/update_engine" path="external/update_engine" revision="047d95d37b628563389eb397f19fe5f1c0c8eb05" upstream="master"/>
+  <project name="linux/external/wifiAutoSetup" path="external/wifiAutoSetup" revision="d2cfc6b2ca9754311542f91e481e8576fd4ecbc0" upstream="master"/>
+  <project name="linux/recovery" path="external/recovery" revision="cba9eb761e468dd0eb7236485da5be481e441a26" upstream="develop"/>
+  <project name="linux/security/bin" path="external/security/bin" revision="d6676eb02c8a1b4966df7d8c4bb203ea25fc98b2" upstream="master"/>
+  <project name="linux/tools" path="tools" revision="be5e30128c75cd2f1e5b587c622f4e71789cdeaa" upstream="master">
+    <linkfile dest="tools/windows/AndroidTool/AndroidTool_Release/config.cfg" src="windows/AndroidTool/AndroidTool_Release/rk3308-config.cfg"/>
+    <linkfile dest="tools/windows/AndroidTool/rockdev/package-file" src="windows/AndroidTool/rockdev/rk3308-package-file"/>
+    <linkfile dest="tools/windows/AndroidTool/rockdev/mkupdate.bat" src="windows/AndroidTool/rockdev/rk3308-mkupdate.bat"/>
+    <linkfile dest="tools/linux/Linux_Pack_Firmware/rockdev/mkupdate.sh" src="linux/Linux_Pack_Firmware/rockdev/rk3308-mkupdate.sh"/>
+    <linkfile dest="tools/linux/Linux_Pack_Firmware/rockdev/package-file" src="linux/Linux_Pack_Firmware/rockdev/rk3308-package-file"/>
+  </project>
+  <project name="rk/kernel-stable" path="kernel" revision="bf2d631cb72de3bb5fdc031901db8855ae196fcf" upstream="stable-4.4-rk3308-linux"/>
+  <project name="rk/prebuilts/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu" path="prebuilts/gcc/linux-x86/aarch64/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu" revision="f96f76d6be89a6e28d4dac1f233f9aca9921f69b" upstream="master"/>
+  <project name="rk/prebuilts/gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf" path="prebuilts/gcc/linux-x86/arm/gcc-linaro-6.3.1-2017.05-x86_64_arm-linux-gnueabihf" revision="dd4df7dff4f1df65d78939a958b760a79e3650a1" upstream="master"/>
+  <project name="rk/rk1108/buildroot" path="buildroot" revision="25b8264ece5a18b2223148e2355dc51e4ae2c634" upstream="stable-rk3308-v1.2.3-20190108">
+    <linkfile dest="Makefile" src="build/Makefile"/>
+    <linkfile dest="envsetup.sh" src="build/envsetup.sh"/>
+  </project>
+  <project name="rk/rkbin-stable" path="rkbin" revision="b9b497ca401886eea8e8e0ba79b016c777c4b52e" upstream="stable-4.4-rk3308-linux-1.2.3"/>
+</manifest>
