@@ -131,7 +131,8 @@ hciconfig hci0 piscan
 然后再看一下，运行博通协议栈的时候，一些配网的例子，这个脚本是我们sdk自带的，我们自己写的
 
 
-4、跑deviceio的
+4、跑deviceio
+
 deviceio是被封装了的，提供的只是接口，什么都看不了
 ```
 deviceio_test
