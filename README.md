@@ -182,7 +182,16 @@ chmod 777 /usr/bin/bsa_server.sh
 ```
 
 
+5、ble配网
+新的版本配网已经改了，文档有说
+```
+博通的跑的软件
+bsa_ble_wifi_introducer.sh start
+deviceio_test
 
+rtk的跑的软件
+gatt_server
+```
 
 
 
