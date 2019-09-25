@@ -1,3 +1,5 @@
+版本为rk3308_linux_release_v1.3.1_20190913.xml
+
 rk 3308 linux wifi bt 部分
 
 和andorid不一样 linux一般就是只有一个版本 所有改动都是集中在一个分支，还有一些定制产品
