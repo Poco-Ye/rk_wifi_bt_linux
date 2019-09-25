@@ -79,7 +79,7 @@ arecord -D 2mic_loopback -r 8000 -f S16_LE -c 2 --period-size 1024 --buffer-size
 bsa_server这个大小大概是4M，这个后台是一定要跑的，不管前端写的是应用还是脚本还是自己敲得命令，这个应用必须跑起来
 
 看一下手动的命令
-
+```
 echo 0 > /sys/class/rfkill/rfkill0/state
 
 sleep 2
@@ -95,7 +95,7 @@ cd /data/bsa/config
 bsa_server -r 12 -p /system/etc/firmware/BCM4343B0.hcd -d /dev/ttyS4 -b /data/btsnoop.log > /data/bsa_log &
 
 app_manager &
-
+```
 有跑bsa_server的后台，sniff log也可以输出到data/btsnoop.log，前端只跑了app_manager
 
 还有哪些前端呢，在broadcom_bsa/3rdparty里面，这个目录下就是编译测试程序，
@@ -109,7 +109,7 @@ app_manager &
 一些测试程序
 
 博通在linux上面，除了可以跑自己的协议栈，当然也可以跑开源的bluez，看一下手动的命令，主要就是有个hciattach加载hci0的
-
+```
 echo 0 > /sys/class/rfkill/rfkill0/state
 
 sleep 2
@@ -125,7 +125,7 @@ brcm_patchram_plus1 -d --enable_hci --no2bytes --tosleep 200000 --baudrate 15000
 hciconfig hci0 up
 
 hciconfig hci0 piscan
-
+```
 这个就是跑BLUEZ的，IPC机制是D-BUS，一样是后台前端的模式，跑起bluetoothd可以运行一些工具或者bluez-alsa
 
 然后再看一下，运行博通协议栈的时候，一些配网的例子，这个脚本是我们sdk自带的，我们自己写的
