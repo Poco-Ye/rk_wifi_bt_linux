@@ -131,7 +131,54 @@ hciconfig hci0 piscan
 然后再看一下，运行博通协议栈的时候，一些配网的例子，这个脚本是我们sdk自带的，我们自己写的
 
 
+4、跑deviceio的
+deviceio是被封装了的，提供的只是接口，什么都看不了
+```
+deviceio_test
+version:V1.2.4
+ERROR:invalid argument.
+deviceio_test [Usage]:
+        "deviceio_test bluetooth":show bluetooth test cmd menu.
+        "deviceio_test wificonfig":show wifi config test cmd menu.
+```
+这个软件给客户用的是个图表脚本
+```
+# deviceio_test bluetooth
+version:V1.2.4
+#### Please Input Your Test Command Index ####
+01.  bt_server_open
+02.  bt_test_set_class
+03.  bt_test_enable_reconnect
+04.  bt_test_disable_reconnect
+05.  bt_test_source_auto_start
+06.  bt_test_source_connect_status
+....
+```
+然后选择需要运行的选项
+```
+出问题时
 
+修改/usr/bin/bsa_server.sh（deviceio软件内部是调用这个脚本启动bsa_server）
+
+chmod 777 /usr/bin/bsa_server.sh
+
+--- a/bsa_server.sh
++++ b/bsa_server.sh
+@@ -15,8 +15,8 @@ case "$1" in
+     cp /etc/bsa_file/* /data/bsa/config/test_files/av/
+     cd /data/bsa/config
+     echo "start broadcom bluetooth server bsa_sever" 
+-    bsa_server -r 12 -p $hcd_file -d /dev/ttyS4 -all=0 &
+-    #bsa_server -r 12 -b /data/bsa/btsnoop.log -p $hcd_file -d /dev/ttyS4 > /data/bsa/bsa_log &
++    #bsa_server -r 12 -p $hcd_file -d /dev/ttyS4 -all=0 &
++    bsa_server -r 12 -b /data/bsa/btsnoop.log -p $hcd_file -d /dev/ttyS4 > /data/bsa/bsa_log &
+
+     echo "|----- bluetooth bsa server is open ------|" 
+
+复现问题提供：
+/data/bsa/btsnoop.log
+/data/bsa/bsa_log
+```
 
 
 
