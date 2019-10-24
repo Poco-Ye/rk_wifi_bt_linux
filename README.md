@@ -94,7 +94,7 @@ cd /data/bsa/config
 
 bsa_server -r 12 -p /system/etc/firmware/BCM4343B0.hcd -d /dev/ttyS4 -b /data/btsnoop.log > /data/bsa_log &
 
-app_manager &
+app_manager &（运行到此步骤，才能在手机蓝牙列表发现并连接设备）
 ```
 有跑bsa_server的后台，sniff log也可以输出到data/btsnoop.log，前端只跑了app_manager
 
