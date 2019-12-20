@@ -192,6 +192,11 @@ deviceio_test
 rtk的跑的软件
 gatt_server
 ```
+6、github linux位置
+```
+如：
+https://github.com/rockchip-linux/rkwifibt/blob/master/firmware/broadcom/AP6212A1/bt/bcm43438a1.hcd
+```
 
 
 
