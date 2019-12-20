@@ -196,6 +196,7 @@ gatt_server
 ```
 如：
 https://github.com/rockchip-linux/rkwifibt/blob/master/firmware/broadcom/AP6212A1/bt/bcm43438a1.hcd
+https://github.com/rockchip-linux/kernel/commit/c201a3aeb65b97b3df906da519d529232e9322c8
 ```
 
 
