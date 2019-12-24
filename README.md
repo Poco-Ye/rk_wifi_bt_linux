@@ -199,6 +199,11 @@ https://github.com/rockchip-linux/rkwifibt/blob/master/firmware/broadcom/AP6212A
 https://github.com/rockchip-linux/kernel/commit/c201a3aeb65b97b3df906da519d529232e9322c8
 ```
 7、主控端uart电压域是3.0V，模块端的电压是1.8V，电压不匹配导致uart通信异常
+```
+ts_uart s /data/testfile 115200 1 0 0 /dev/ttyS1
+请手动拉高拉低CTS测试下，不用CTS和RTS短接。 这个命令如果很快执行完，说明能正常发送，如果卡住，说明流控起作用了，不能发送。
+如果怀疑接收时，RTS不起作用，可以量下RTS的信号是否拉高过。
+```
 
 
 
