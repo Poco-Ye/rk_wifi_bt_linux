@@ -198,6 +198,7 @@ gatt_server
 https://github.com/rockchip-linux/rkwifibt/blob/master/firmware/broadcom/AP6212A1/bt/bcm43438a1.hcd
 https://github.com/rockchip-linux/kernel/commit/c201a3aeb65b97b3df906da519d529232e9322c8
 ```
+7、主控端uart电压域是3.0V，模块端的电压是1.8V，电压不匹配导致uart通信异常
 
 
 
