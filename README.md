@@ -1,3 +1,9 @@
+BT FTP
+
+ftp.realsil.com.cn
+
+账号btlinux 密码 ujv376xc
+
 版本为rk3308_linux_release_v1.3.1_20190913.xml
 
 rk 3308 linux wifi bt 部分
