@@ -210,6 +210,11 @@ ts_uart s /data/testfile 115200 1 0 0 /dev/ttyS1
 请手动拉高拉低CTS测试下，不用CTS和RTS短接。 这个命令如果很快执行完，说明能正常发送，如果卡住，说明流控起作用了，不能发送。
 如果怀疑接收时，RTS不起作用，可以量下RTS的信号是否拉高过。
 ```
-
-
+8、linux音频不从蓝牙耳机出来
+```
+音频输出设备切换是上层处理。
+debian SDK使用的是pulseaudio音频服务框架，需要对pulseaudio进行相关配置，具体请自行google相关资料，如：
+https://wiki.debian.org/BluetoothUser#Can_connect.2C_but_not_to_audio
+https://askubuntu.com/questions/366032/pulseaudio-not-detecting-bluetooth-headset-automatically
+```
 
