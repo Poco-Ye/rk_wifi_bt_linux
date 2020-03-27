@@ -217,4 +217,20 @@ debian SDK使用的是pulseaudio音频服务框架，需要对pulseaudio进行�
 https://wiki.debian.org/BluetoothUser#Can_connect.2C_but_not_to_audio
 https://askubuntu.com/questions/366032/pulseaudio-not-detecting-bluetooth-headset-automatically
 ```
+9、关于linux蓝牙乱七八糟的问题
+```
+linux蓝牙更新快又多，放的乱
+rockchip_rk3308_release/target$ grep brcm_patchram_plus1 -nr
+
+usr/bin/bt_load_broadcom_firmware:8:brcm_patchram_plus1 --bd_addr_rand --enable_hci --no2bytes --use_baudrate_for_download  --tosleep  200000 --baudrate 1500000 --patchram  /system/etc/firmware/BCM4345C0.hcd /dev/ttyS4 &
+usr/bin/bt_init.sh:8:brcm_patchram_plus1 --bd_addr_rand --enable_hci --no2bytes --use_baudrate_for_download  --tosleep  200000 --baudrate 1500000 --patchram  /system/etc/firmware/BCM4345C0.hcd /dev/ttyS4 &
+usr/bin/bt_pcba_test:8:brcm_patchram_plus1 --bd_addr_rand --enable_hci --no2bytes --use_baudrate_for_download  --tosleep  200000 --baudrate 1500000 --patchram  /system/etc/firmware/BCM4345C0.hcd /dev/ttyS4 &
+
+一个启动的脚本就有好几个，搞那么多，首先判断是跑bluez还是bsa
+先找两个软件
+一个是brcm_patchram_plus1 
+还一个是rtk_hciattach
+
+再找一个软件bsa_server
+```
 
