@@ -28,6 +28,9 @@ rtk_hciattch + bluetoothd + bluealsa + bluealsa-aplay  =rtk
 2、跑rtk的
 ```
 这个是rtk的启动脚本，rtk_hciattach加载起来fw的后面，brcm_patchram_plus1做完前面的后面也是一样的
+
+busybox killall bluetoothd
+
 echo 0 > /sys/class/rfkill/rfkill0/state
 
 sleep 2
