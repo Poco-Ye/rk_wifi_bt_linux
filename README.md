@@ -12,7 +12,7 @@ rk 3308 linux wifi bt 部分
 
 改动比较频繁，更新有时不及时，版本上很快就被抛后，有很多commit也经常没来得及放到repo上，详细操作参考doc
 
-0、broadcom_bsa是bsa_server的前端
+0、broadcom_bsa是bsa_server的前端,deviceio是一个封装其它库的软件
 ```
 broadcom_bsa：正基更新的bsa相关代码，直接替换external/broadcom_bsa，替换后需make broadcom_bsa-dirclean && make broadcom_bsa-rebuild
 改为可以直接push libbsa.so，删掉这个deviceio是起不来的
