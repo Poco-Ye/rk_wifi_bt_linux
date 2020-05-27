@@ -12,15 +12,47 @@ rk 3308 linux wifi bt 部分
 
 改动比较频繁，更新有时不及时，版本上很快就被抛后，有很多commit也经常没来得及放到repo上，详细操作参考doc
 
+0、broadcom_bsa是bsa_server的前端
+```
+broadcom_bsa：正基更新的bsa相关代码，直接替换external/broadcom_bsa，替换后需make broadcom_bsa-dirclean && make broadcom_bsa-rebuild
+改为可以直接push libbsa.so，删掉这个deviceio是起不来的
+
+首先这个是前端的库
+./broadcom_bsa/3rdparty/embedded/bsa_examples/linux/libbsa/build/arm/sharedlib/libbsa.so
+./broadcom_bsa/3rdparty/embedded/bsa_examples/linux/libbsa/build/arm64/sharedlib/libbsa.so
+./broadcom_bsa/3rdparty/embedded/bsa_examples/linux/libbsa/build/x86_64/sharedlib/libbsa.so
+./broadcom_bsa/3rdparty/embedded/bsa_examples/linux/libbsa/build/arm/libbsa.a
+./broadcom_bsa/3rdparty/embedded/bsa_examples/linux/libbsa/build/arm64/libbsa.a
+./broadcom_bsa/3rdparty/embedded/bsa_examples/linux/libbsa/build/x86_64/libbsa.a
+
+bluez的库
+./usr/lib/pulse-11.1/modules/libbluez5-util.so
+./usr/lib/pulse-11.1/modules/module-bluetooth-policy.so
+./usr/lib/pulse-11.1/modules/module-bluetooth-discover.so
+./usr/lib/pulse-11.1/modules/module-bluez5-discover.so
+./usr/lib/pulse-11.1/modules/module-bluez5-device.so
 
 
+
+然后是deviceio的库，调用bsa的库 bluez的库
+./DeviceIO/lib64/libDeviceIo_broadcom.so
+./DeviceIO/lib64/libDeviceIo_bluez.so
+./DeviceIO/lib64/libDeviceIo_cypress.so
+./DeviceIO/lib32/libDeviceIo_broadcom.so
+./DeviceIO/lib32/libDeviceIo_bluez.so
+./DeviceIO/lib32/libDeviceIo_cypress.so
+
+deviceio是一个简单的封装软件，没有bsa的源码，调用bsa的库 bluez应该也是使用加载库的方式
+
+
+```
 
 
 1、有两种模组，一种是博通的，另外一种是rtk的
 
 博通跑bsa或者bluez协议栈，rtk只跑bluez协议
 
-broadcom_bsa + deviceio = 博通
+broadcom_bsa + deviceio(examples) = 博通
 rk_wifi_bt_linux/external/rkwifibt/brcm_tools/brcm_patchram_plus1.c + bluetoothd + bluealsa + bluealsa-aplay = 博通
 rtk_hciattch + bluetoothd + bluealsa + bluealsa-aplay  =rtk
 
