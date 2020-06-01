@@ -268,4 +268,86 @@ usr/bin/bt_pcba_test:8:brcm_patchram_plus1 --bd_addr_rand --enable_hci --no2byte
 
 再找一个软件bsa_server
 ```
+10、wifi sta和ap模式，或者参考wpaserviceutil.h，AP通道切换channel=6为153，不能同时
+```
+wpa_supplicant.conf
 
+cat data/misc/wifi/wpa_supplicant.conf
+ctrl_interface=/data/misc/wifi/sockets
+disable_scan_offload=1
+driver_param=use_p2p_group_interface=1p2p_device=1
+update_config=1
+device_name=rk322x_box
+manufacturer=rockchip
+model_name=rk322x-box
+model_number=rk322x-box
+serial_number=P1QRMMGNE3
+device_type=10-0050F204-5
+config_methods=physical_display virtual_push_button
+p2p_no_go_freq=5170-5740
+pmf=1
+external_sim=1
+wowlan_triggers=any
+p2p_search_delay=0
+
+network={
+        ssid="poco"
+        bssid=30:74:96:75:24:a7
+        psk="3143531435"
+        key_mgmt=WPA-PSK
+        id_str="%7B%22creatorUid%22%3A%221000%22%2C%22configKey%22%3A%22%5C%22poco%5C%22WPA_PSK%22%7D"
+}
+
+hostapd.conf
+
+cat /data/misc/wifi/hostapd.conf
+interface=wlan0
+driver=nl80211
+ctrl_interface=/data/misc/wifi/hostapd
+ssid=AndroidAP
+channel=1
+ieee80211n=1
+hw_mode=g
+ignore_broadcast_ssid=0
+wowlan_triggers=any
+wpa=2
+rsn_pairwise=CCMP
+wpa_psk=2a336741dae590f54e1c7924c940559a848840030ee965aaa178023ab490023b
+STA模式
+串口命令：
+echo 1 > /sys/class/rkwifi/driver 驱动加载
+ifconfig wlan0 up 启动网卡
+wpa_supplicant -Dnl80211 -c /tmp/wpa_supplicant.config -iwlan0 -B 连接热点。
+udhcpc -i wlan0 -b 获取ip地址
+模组能够正常连接上wifi热点并获取到ip地址。wpa_supplicant的配置内容可以参考下面。系统在etc目录会有配置文件，只需要修改对应的ssid和密码，就可以直接使用该配置文件。
+ctrl_interface=/var/run/wpa_supplicant
+ap_scan=1
+network={
+proto=RSN
+key_mgmt=WPA-PSK
+pairwise=CCMP TKIP
+group=CCMP TKIP
+ssid="name"
+psk="password"
+}
+
+AP模式
+串口命令：
+echo 1 > sys/class/rkwifi/driver 驱动加载
+ifconfig lo 127.0.0.1 netmask 255.255.255.0;
+ifconfig wlan0 192.168.100.1 netmask 255.255.255.0 设置ip地址
+dnsmasq -C /etc/dnsmasq.conf 启动dns
+hostapd /tmp/hostapd.conf -B 启动ap模式
+模组能够正常启动ap 模式。hostapd.conf配置内容参考如下
+ctrl_interface=/tmp/hostapd
+interface=wlan0
+driver=nl80211
+ssid="name"
+channel=6
+hw_mode=g
+ignore_broadcast_ssid=0
+wpa=2
+wpa_passphrase="password"
+rsn_pairwise=CCMP
+
+```
