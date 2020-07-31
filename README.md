@@ -351,3 +351,20 @@ wpa_passphrase="password"
 rsn_pairwise=CCMP
 
 ```
+
+11、概率性打不开可能和这个有关系
+```
+
+--- a/brcm_tools/brcm_patchram_plus1.c
++++ b/brcm_tools/brcm_patchram_plus1.c
+@@ -179,7 +179,7 @@ static const fw_auto_detection_entry_t fw_auto_detection_table[] = {
+        {"BCM4359C0","BCM4359C0"},  //AP6359
+        {"BCM4349B1","BCM4359B1"},  //AP6359
+        {"BCM4359C0","BCM4359C0"},      //AP6398s
+-       {(const char *) NULL, NULL}
++       {(char *) NULL, NULL}
+ };
+ int uart_fd = -1;
+ int hcdfile_fd = -1;
+
+```
