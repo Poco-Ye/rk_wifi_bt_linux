@@ -14,6 +14,17 @@ rk 3308 linux wifi bt 部分
 
 0、broadcom_bsa是bsa_server的前端,deviceio是一个封装其它库的软件
 ```
+deviceio同时支持正基海华瑞昱的芯片
+
+瑞昱选择配置(直接在buildroot make menuconfig 可参考device doc目录指导)buildroot/package/rockchip/rkwifibt/Config.in
+海华选择配置(直接在buildroot make menuconfig 可参考device doc目录指导)buildroot/package/rockchip/cypress_bsa/Config.in
+正基选择配置(直接在buildroot make menuconfig 可参考device doc目录指导)buildroot/package/rockchip/bluez-alsa/Config.in  buildroot/package/rockchip/rkwifibt/Config.in
+
+deviceio软件的编译主要根据以上文件的配置，根据不同设置来设置不同的宏使用到软件函数选择不同路径的库或者功能，编译在buildroot/package/rockchip/deviceio/
+deviceio.mk
+```
+
+```
 broadcom_bsa：正基更新的bsa相关代码，直接替换external/broadcom_bsa，替换后需make broadcom_bsa-dirclean && make broadcom_bsa-rebuild
 改为可以直接push libbsa.so，删掉这个deviceio是起不来的
 
