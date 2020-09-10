@@ -14,7 +14,7 @@ rk 3308 linux wifi bt 部分
 
 0、broadcom_bsa是bsa_server的前端,deviceio是一个封装其它库的软件
 ```
-deviceio同时支持正基海华瑞昱的芯片
+deviceio支持正基海华瑞昱的芯片
 
 正基选择配置(直接在buildroot make menuconfig 可参考device doc目录指导)buildroot/package/rockchip/broadcom_bsa/Config.in
 海华选择配置(直接在buildroot make menuconfig 可参考device doc目录指导)buildroot/package/rockchip/cypress_bsa/Config.in
