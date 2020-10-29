@@ -379,3 +379,9 @@ rsn_pairwise=CCMP
  int hcdfile_fd = -1;
 
 ```
+12、linux对蓝牙版本的更新
+```
+.repo/repo/repo sync -c linux/external/deviceio_release linux/external/bluetooth_bsa 
+linux/external/broadcom_bsa linux/external/rkwifibt linux/external/app linux/docs --no-tags
+```
+
