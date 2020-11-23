@@ -22,6 +22,13 @@ deviceio支持正基海华瑞昱的芯片
 
 deviceio软件的编译主要根据以上文件的配置，根据不同设置来设置不同的宏使用到软件函数选择不同路径的库或者功能，编译在buildroot/package/rockchip/deviceio/
 deviceio.mk
+
+----编译-----
+buildroot/output/rockchip_rk3308_release/.config
+buildroot/package/rockchip/deviceio
+buildroot/package/rockchip/broadcom_bsa
+buildroot/package/rockchip/cypress_bsa
+buildroot/package/rockchip/rkwifibt
 ```
 
 ```
