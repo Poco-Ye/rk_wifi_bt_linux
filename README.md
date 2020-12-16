@@ -1,3 +1,19 @@
+编译
+
+```
+source envsetup.sh rockchip_rv1126_rv1109
+source envsetup.sh rockchip_rk3308_release
+
+make deviceio_release-dirclean && make deviceio_release-rebuild
+make broadcom_bsa-dirclean && make broadcom_bsa-rebuild
+make cyperess_bsa-dirclean && make cyperess_bsa-rebuild
+make deviceio-dirclean && make deviceio-rebuild
+
+make deviceio-dirclean && make deviceio -j4
+
+```
+
+
 BT FTP
 
 ftp.realsil.com.cn
