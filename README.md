@@ -407,4 +407,40 @@ rsn_pairwise=CCMP
 .repo/repo/repo sync -c linux/external/deviceio_release linux/external/bluetooth_bsa 
 linux/external/broadcom_bsa linux/external/rkwifibt linux/external/app linux/docs --no-tags
 ```
+13、deviceio source播放
+```
+串口调试deviceio_test  第四步打开adb shell 输入 apaly xxx.wav测试的方法  SDK验证过是OK
+alsa_fake_device_write_open
+eq_drc_process
+buildroot/output/rockchip_rk3308_release/target/etc/init.d/S97_EQ_init
+
+#!/bin/sh
+#
+# Start 3308 linux service....
+#
+
+case "$1" in
+        start)
+               # ueventd
+               /usr/bin/eq_drc_process &
+               ;;
+        stop)
+               printf "stop eq_drc_process finished"
+        ;;
+        *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac
+sleep 1
+exit 0
+
+
+/data/bsa/config/bsa_socket
+
+./buildroot/board/rockchip/rk3308/fs-overlay/etc/asound.conf
+```
+
+
+
 
