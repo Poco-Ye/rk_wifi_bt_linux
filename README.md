@@ -8,7 +8,7 @@ make deviceio_release-dirclean && make deviceio_release-rebuild
 make broadcom_bsa-dirclean && make broadcom_bsa-rebuild
 make cypress_bsa-dirclean && make cypress_bsa-rebuild
 make deviceio-dirclean && make deviceio-rebuild
-
+make rkwifibt-dirclean && make rkwifibt-rebuild
 make deviceio-dirclean && make deviceio -j4
 
 ```
