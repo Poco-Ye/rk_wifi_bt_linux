@@ -439,6 +439,13 @@ exit 0
 /data/bsa/config/bsa_socket
 
 ./buildroot/board/rockchip/rk3308/fs-overlay/etc/asound.conf
+
+cat /proc/asound/cards
+
+arecord -Dhw:1,0 -r 8000 -c 2 -f S16_LE |aplay -r 8000 -c 2 -f S16_LE // 音箱端播放远程电话的声音
+arecord -D 2mic_loopback -r 8000 -f S16_LE -c 2 |aplay -D hw:1,0 -r 8000 -c 2 -f S16_LE // 
+
+
 ```
 
 
