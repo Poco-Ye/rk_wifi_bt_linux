@@ -11,6 +11,12 @@ make deviceio-dirclean && make deviceio-rebuild
 make rkwifibt-dirclean && make rkwifibt-rebuild
 make deviceio-dirclean && make deviceio -j4
 
+
+./usr/bin/bsa_server
+./usr/lib/libbsa.so
+./usr/lib/libDeviceIo.so
+./usr/bin/deviceio_test
+
 ```
 
 
