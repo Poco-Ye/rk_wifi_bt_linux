@@ -2,7 +2,7 @@
 
 ```
 source envsetup.sh rockchip_rv1126_rv1109
-source envsetup.sh rockchip_rk3308_release
+source envsetup.sh rockchip_rk3308_release  or rockchip_rk3308_32_release
 
 make deviceio_release-dirclean && make deviceio_release-rebuild
 make broadcom_bsa-dirclean && make broadcom_bsa-rebuild
