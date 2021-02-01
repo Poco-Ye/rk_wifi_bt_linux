@@ -453,6 +453,80 @@ arecord -D 2mic_loopback -r 8000 -f S16_LE -c 2 |aplay -D hw:1,0 -r 8000 -c 2 -f
 
 
 ```
+14、deviceio打log
+```
+deviceio是借被人的实例再自己写的，这个就建立很多种方式
+一般搜索SYSLOG_DEBUG
+用别人app的接口封装自己的rk接口（也有直接使用实例的打log的方法，封装在deviceio/DeviceIO/bluetooth/bsa/bluetooth_bsa.cpp
+
+分散在各个Rkxx.h上
+
+deviceio/DeviceIO/bluetooth/bsa/bluetooth_bsa.h
+#ifndef BLUETOOTH_BSA_H
+#define BLUETOOTH_BSA_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "DeviceIo/DeviceIo.h"
+#include "DeviceIo/RkBtBase.h"
+#include "DeviceIo/RkBtSource.h"
+#include "DeviceIo/RkBtSink.h"
+#include "DeviceIo/RkBle.h"
+#include "DeviceIo/RkBleClient.h"
+#include "DeviceIo/RkBtSpp.h"
+#include "DeviceIo/RkBtHfp.h"
+#include "DeviceIo/RkBtObex.h"
+#include "DeviceIo/RkBtPan.h"
+#include <DeviceIo/Rk_socket_app.h>
+#include "utility.h"
+
+#endif
+~
+
+
+），其实全部都可以改成printf
+
+deviceio/DeviceIO/src/utility/slog.h
+#define SYSLOG_DEBUG
+
+#ifdef SYSLOG_DEBUG
+#define pr_debug(fmt, ...)      syslog(LOG_DEBUG, fmt, ##__VA_ARGS__)
+#define pr_info(fmt, ...)       syslog(LOG_INFO, fmt, ##__VA_ARGS__)
+#define pr_warning(fmt, ...)    syslog(LOG_WARNING, fmt, ##__VA_ARGS__)
+#define pr_err(fmt, ...)        syslog(LOG_ERR, fmt, ##__VA_ARGS__)
+#else
+#define pr_debug    printf
+#define pr_info printf
+#define pr_warning printf
+#define pr_err printf
+#endif
+
+
+bluetooth_bsa/3rdparty/embedded/bsa_examples/linux/app_common/include/app_utils.h
+#define SYSLOG_DEBUG
+
+#ifdef SYSLOG_DEBUG
+#define LOG_TAG "CYPRESS_BSA"
+#define APP_ERROR0(format)         syslog(LOG_ERR, "[%s]%s: " format "\n", LOG_TAG, __func__)
+#define APP_ERROR1(format, ...)    syslog(LOG_ERR, "[%s]%s: " format "\n", LOG_TAG, __func__, ##__VA_ARGS__)
+#define APP_INFO0(format)          syslog(LOG_INFO, "[%s]%s: " format "\n", LOG_TAG, __func__)
+#define APP_INFO1(format, ...)     syslog(LOG_INFO, "[%s]%s: " format "\n", LOG_TAG, __func__, ##__VA_ARGS__)
+#define APP_DEBUG0(format)         syslog(LOG_DEBUG, "[%s]%s: " format "\n", LOG_TAG, __func__)
+#define APP_DEBUG1(format, ...)    syslog(LOG_DEBUG, "[%s]%s: " format "\n", LOG_TAG, __func__, ##__VA_ARGS__)
+#else
+#define APP_ERROR0(format)         printf("ERROR: %s: " format "\n", __func__)
+#define APP_ERROR1(format, ...)    printf("ERROR: %s: " format "\n", __func__, ##__VA_ARGS__)
+#define APP_INFO0(format)          printf("INFO: %s: " format "\n", __func__)
+#define APP_INFO1(format, ...)     printf("INFO: %s: " format "\n", __func__, ##__VA_ARGS__)
+#define APP_DEBUG0(format)         printf("DEBUG: %s: " format "\n", __func__)
+#define APP_DEBUG1(format, ...)    printf("DEBUG: %s: " format "\n", __func__, ##__VA_ARGS__)
+#endif
+
+
+
+```
 
 
 
