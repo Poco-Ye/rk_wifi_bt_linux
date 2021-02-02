@@ -17,6 +17,21 @@ make deviceio-dirclean && make deviceio -j4
 ./usr/lib/libDeviceIo.so
 ./usr/bin/deviceio_test
 
+
+--- a/3rdparty/embedded/bsa_examples/linux/app_common/include/app_utils.h
++++ b/3rdparty/embedded/bsa_examples/linux/app_common/include/app_utils.h
+@@ -30,7 +30,7 @@
+ #define APP_BITS_SET(__v, __b) (((__v) & (__b)) == (__b))
+
+ /* Macro to print an message */
+-#define SYSLOG_DEBUG
++//#define SYSLOG_DEBUG
+
+ #ifdef SYSLOG_DEBUG
+ #define LOG_TAG "BROADCOM_BSA"
+
+
+
 ```
 
 
