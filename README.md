@@ -31,6 +31,8 @@ make deviceio-dirclean && make deviceio -j4
  #define LOG_TAG "BROADCOM_BSA"
 
 
+adb pull /data/bsa C:\Users\Administrator\Desktop\1
+
 
 ```
 
