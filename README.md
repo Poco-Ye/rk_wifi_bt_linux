@@ -552,6 +552,8 @@ mkdir -p /data/bsa/config
 
 cd /data/bsa/config
 
+app_manager -s &
+
 app_hh 
 ```
 
