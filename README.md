@@ -548,8 +548,6 @@ bluetooth_bsa/3rdparty/embedded/bsa_examples/linux/app_common/include/app_utils.
 ```
 /usr/bin/bsa_server.sh start &
 
-mkdir -p /data/bsa/config
-
 cd /data/bsa/config
 
 app_manager -s &
