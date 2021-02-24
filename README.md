@@ -1,5 +1,6 @@
 编译
 
+先认真仔细看docs/Linux/Wifibt/上面的文档
 ```
 source envsetup.sh rockchip_rv1126_rv1109
 source envsetup.sh rockchip_rk3308_release  or rockchip_rk3308_32_release
