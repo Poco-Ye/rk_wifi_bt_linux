@@ -11,6 +11,12 @@ make deviceio-dirclean && make deviceio-rebuild
 make rkwifibt-dirclean && make rkwifibt-rebuild
 make deviceio-dirclean && make deviceio -j4
 
+配置
+device/rockchip/rk3288/BoardConfig-rk3288-evb-rk808.mk
+buildroot/configs/rockchip_rk3288_defconfig
+cp device/rockchip/rk3288/BoardConfig-rk3288-evb-rk808.mk device/rockchip/.BoardConfig.mk
+make savedefconfig
+
 
 ./usr/bin/bsa_server
 ./usr/lib/libbsa.so
