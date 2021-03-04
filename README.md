@@ -561,6 +561,24 @@ app_manager -s &
 
 app_hh 
 ```
+16、1126运行6256失败,pp的参数加载fw要修改
+```
+external/broadcom_bsa$ git diff
+diff --git a/bsa_server.sh b/bsa_server.sh
+index 10fc5b0..737b55d 100644
+--- a/bsa_server.sh
++++ b/bsa_server.sh
+@@ -21,8 +21,8 @@ case "$1" in
+     cp /etc/bsa_file/* /data/bsa/config/test_files/av/
+     cd /data/bsa/config
+     echo "start broadcom bluetooth server bsa_sever"
+-    bsa_server -r 12 -pp $hcd_file -d $ttys_dev -all=0 &
+-    #bsa_server -r 12 -b /data/bsa/btsnoop.log -pp $hcd_file -d $ttys_dev > /data/bsa/bsa_log &
++    #bsa_server -r 12 -pp $hcd_file -d $ttys_dev -all=0 &
++    bsa_server -r 12 -b /data/bsa/btsnoop.log -p $hcd_file -d $ttys_dev > /data/bsa/bsa_log &
 
+     echo "|----- bluetooth bsa server is open ------|"
+
+```
 
 
