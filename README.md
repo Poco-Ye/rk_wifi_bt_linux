@@ -581,4 +581,33 @@ index 10fc5b0..737b55d 100644
 
 ```
 
+17、1126 6256使用修改
+```
+~/rv1126/external/broadcom_bsa$ git diff
+diff --git a/3rdparty/embedded/bsa_examples/linux/app_common/include/app_utils.h b/3rdparty/embedded/bsa_examples/linux/app_common/include/app_utils.h
+index 098a85c..5b40876 100644
+--- a/3rdparty/embedded/bsa_examples/linux/app_common/include/app_utils.h
++++ b/3rdparty/embedded/bsa_examples/linux/app_common/include/app_utils.h
+@@ -30,7 +30,7 @@
+ #define APP_BITS_SET(__v, __b) (((__v) & (__b)) == (__b))
 
+ /* Macro to print an message */
+-#define SYSLOG_DEBUG
++//#define SYSLOG_DEBUG
+
+ #ifdef SYSLOG_DEBUG
+ #define LOG_TAG "BROADCOM_BSA"
+diff --git a/bsa_server.sh b/bsa_server.sh
+index 10fc5b0..737b55d 100644
+--- a/bsa_server.sh
++++ b/bsa_server.sh
+@@ -21,8 +21,8 @@ case "$1" in
+     cp /etc/bsa_file/* /data/bsa/config/test_files/av/
+     cd /data/bsa/config
+     echo "start broadcom bluetooth server bsa_sever"
+-    bsa_server -r 12 -pp $hcd_file -d $ttys_dev -all=0 &
+-    #bsa_server -r 12 -b /data/bsa/btsnoop.log -pp $hcd_file -d $ttys_dev > /data/bsa/bsa_log &
++    #bsa_server -r 12 -pp $hcd_file -d $ttys_dev -all=0 &
++    bsa_server -r 12 -b /data/bsa/btsnoop.log -p $hcd_file -d $ttys_dev > /data/bsa/bsa_log &
+
+```
