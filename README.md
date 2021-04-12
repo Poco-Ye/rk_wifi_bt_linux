@@ -475,6 +475,10 @@ cat /proc/asound/cards
 arecord -Dhw:1,0 -r 8000 -c 2 -f S16_LE |aplay -r 8000 -c 2 -f S16_LE // 音箱端播放远程电话的声音
 arecord -D 2mic_loopback -r 8000 -f S16_LE -c 2 |aplay -D hw:1,0 -r 8000 -c 2 -f S16_LE // 
 
+a2dp bluez
+aplay test1k.wav -D bluealsa:HCI=hci0,PROFILE=a2dp,DEV=fc:58:fa:70:b2:7e
+
+
 
 ```
 14、deviceio打log
