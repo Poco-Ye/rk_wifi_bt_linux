@@ -615,3 +615,21 @@ index 10fc5b0..737b55d 100644
 +    bsa_server -r 12 -b /data/bsa/btsnoop.log -p $hcd_file -d $ttys_dev > /data/bsa/bsa_log &
 
 ```
+18、中途按5退出 运行deviceio_test bluetooth &
+```
+~/rv1126/external/deviceio$ git diff
+diff --git a/test/DeviceIOTest.cpp b/test/DeviceIOTest.cpp
+index 0d80c35..ad53699 100644
+--- a/test/DeviceIOTest.cpp
++++ b/test/DeviceIOTest.cpp
+@@ -308,6 +308,8 @@ static void deviceio_test_bluetooth()
+                        printf("%s: selset %d\n", __func__, i);
+                        if ((i >= 1) && (i < item_cnt))
+                                bt_command_table[i].action(NULL);
++            if(i==5)
++                break;
+                } else {
+                        memset(cmdBuf, 0, sizeof(cmdBuf));
+                        strncpy(cmdBuf, szBuf, strlen(szBuf) - strlen(input_start) - 1);
+
+```
