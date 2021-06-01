@@ -42,29 +42,17 @@ adb pull /data/bsa C:\Users\Administrator\Desktop\1
 
 
 教育他们编译应用
-
 在sdk 根目录
-
 source envsetup.sh rockchip_rk3308_release
-
 cd buildroot
-
 make menuconfig
-
 配置完之后
-
 cd ..
-
 make broadcom_bsa-dirclean && make broadcom_bsa-rebuild
-
 make deviceio-dirclean && make deviceio-rebuild
-
 编译完生成应用之后
-
 ./build.sh rootfs
-
 最后烧写 rootfs.img
-
 ```
 
 
