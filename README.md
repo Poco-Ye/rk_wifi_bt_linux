@@ -3,7 +3,7 @@
 先认真仔细看docs/Linux/Wifibt/上面的文档
 ```
 测试步骤
-source测试：01->26->08 input 10000->28 input xx:xx:xx:xx:xx:xx（设备mac地址） （连上以后再开一个终端，原来接的串口就再接adb调试运行apaly xxx.wav）
+source测试：01->26->08 input 10000->28 input xx:xx:xx:xx:xx:xx(设备mac地址)(连上以后再开一个终端，原来接的串口就再接adb调试运行apaly xxx.wav)
 ble测试：01->52->手机安装打开nrf connect连接
 
 ```
