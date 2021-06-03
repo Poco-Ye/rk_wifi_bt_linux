@@ -2,6 +2,12 @@
 
 先认真仔细看docs/Linux/Wifibt/上面的文档
 ```
+测试步骤
+source测试：01 ->26->08 input 10000->28 input xx:xx:xx:xx:xx:xx 
+ble测试：01->52->手机安装打开nrf connect连接
+
+```
+```
 source envsetup.sh rockchip_rv1126_rv1109
 source envsetup.sh rockchip_rk3308_release  or rockchip_rk3308_32_release
 
