@@ -1,0 +1,109 @@
+diff --git a/DeviceIO/bluetooth/bluez/gatt_config.c b/DeviceIO/bluetooth/bluez/gatt_config.c
+index 27aee7c..7e80a9c 100644
+--- a/DeviceIO/bluetooth/bluez/gatt_config.c
++++ b/DeviceIO/bluetooth/bluez/gatt_config.c
+@@ -102,7 +102,7 @@ typedef struct BLE_CONTENT_T
+ 	uint8_t char_uuid[GATT_MAX_CHR][MAX_UUID_LEN];
+ 	uint8_t char_cnt;
+ 	void (*cb_ble_recv_fun)(const char *uuid, char *data, int len);
+-	void (*cb_ble_request_data)(const char *uuid);
++	char* (*cb_ble_request_data)(const char *uuid);
+ } ble_content_t;
+ 
+ ble_content_t *ble_content_internal = NULL;
+diff --git a/DeviceIO/bluetooth/bsa/cypress/app_ble_rk_server.cpp b/DeviceIO/bluetooth/bsa/cypress/app_ble_rk_server.cpp
+index c74d18c..b47d836 100644
+--- a/DeviceIO/bluetooth/bsa/cypress/app_ble_rk_server.cpp
++++ b/DeviceIO/bluetooth/bsa/cypress/app_ble_rk_server.cpp
+@@ -1002,18 +1002,17 @@ static void app_ble_rk_server_profile_cback(tBSA_BLE_EVT event,
+         send_server_resp.status = p_data->ser_read.status;
+         send_server_resp.handle = p_data->ser_read.handle;
+         send_server_resp.offset = p_data->ser_read.offset;
+-        send_server_resp.len = 0;
++        send_server_resp.len = strlen(app_ble_info.request_data_cb((char *)app_ble_rk_server_cb.attr[attr_index].uuid_string));
+         send_server_resp.auth_req = GATT_AUTH_REQ_NONE;
++        if(app_ble_info.request_data_cb) {
++	    strcpy(send_server_resp.value,app_ble_info.request_data_cb((char *)app_ble_rk_server_cb.attr[attr_index].uuid_string));
++        }
+         //memcpy(send_server_resp.value, attribute_value, BSA_BLE_MAX_ATTR_LEN);
+         //APP_INFO1("BSA_BLE_SE_READ_EVT: send_server_resp.conn_id:%d, send_server_resp.trans_id:%d, send_server_resp.status:%d", send_server_resp.conn_id, send_server_resp.trans_id, send_server_resp.status);
+         //APP_INFO1("BSA_BLE_SE_READ_EVT: send_server_resp.status:%d,send_server_resp.auth_req:%d", send_server_resp.status,send_server_resp.auth_req);
+         //APP_INFO1("BSA_BLE_SE_READ_EVT: send_server_resp.handle:%d, send_server_resp.offset:%d, send_server_resp.len:%d", send_server_resp.handle,send_server_resp.offset,send_server_resp.len );
+         BSA_BleSeSendRsp(&send_server_resp);
+ 
+-        if(app_ble_info.request_data_cb) {
+-            msleep(20);
+-            app_ble_info.request_data_cb((char *)app_ble_rk_server_cb.attr[attr_index].uuid_string);
+-        }
+ 
+         break;
+ 
+diff --git a/DeviceIO/include/DeviceIo/RkBle.h b/DeviceIO/include/DeviceIo/RkBle.h
+index ea087a2..7baba78 100644
+--- a/DeviceIO/include/DeviceIo/RkBle.h
++++ b/DeviceIO/include/DeviceIo/RkBle.h
+@@ -21,7 +21,7 @@ typedef struct {
+ 
+ typedef void (*RK_BLE_STATE_CALLBACK)(const char *bd_addr, const char *name, RK_BLE_STATE state);
+ typedef void (*RK_BLE_RECV_CALLBACK)(const char *uuid, char *data, int len);
+-typedef void (*RK_BLE_REQUEST_DATA)(const char *uuid);
++typedef char* (*RK_BLE_REQUEST_DATA)(const char *uuid);
+ 
+ int rk_ble_register_status_callback(RK_BLE_STATE_CALLBACK cb);
+ int rk_ble_register_recv_callback(RK_BLE_RECV_CALLBACK cb);
+diff --git a/DeviceIO/include/DeviceIo/RkBtBase.h b/DeviceIO/include/DeviceIo/RkBtBase.h
+index a032dda..d872279 100644
+--- a/DeviceIO/include/DeviceIo/RkBtBase.h
++++ b/DeviceIO/include/DeviceIo/RkBtBase.h
+@@ -92,7 +92,7 @@ typedef struct {
+ 	/* recevice data */
+ 	void (*cb_ble_recv_fun)(const char *uuid, char *data, int len);
+ 	/* full data */
+-	void (*cb_ble_request_data)(const char *uuid);
++	char* (*cb_ble_request_data)(const char *uuid);
+ } RkBleContent;
+ 
+ typedef struct {
+diff --git a/test/bt_test.cpp b/test/bt_test.cpp
+index 9cfc6c2..6d2f92f 100644
+--- a/test/bt_test.cpp
++++ b/test/bt_test.cpp
+@@ -25,6 +25,9 @@
+ #define BLE_UUID_SEND		"dfd4416e-1810-47f7-8248-eb8be3dc47f9"
+ #define BLE_UUID_RECV		"9884d812-1810-4a24-94d3-b2c11a851fac"
+ #define SERVICE_UUID		"00001910-0000-1000-8000-00805f9b34fb"
++char *ATT_READ[3]={"test1","test2","test3"};
++
++
+ 
+ #define HFP_PCM_CHANNEL_NB	2
+ #define CVSD_SAMPLE_RATE	8000
+@@ -72,7 +75,7 @@ static RkBtScanedDevice *g_paired_dev_list;
+ static unsigned int g_mtu = 0;
+ 
+ static void bt_test_ble_recv_data_callback(const char *uuid, char *data, int len);
+-static void bt_test_ble_request_data_callback(const char *uuid);
++static char* bt_test_ble_request_data_callback(const char *uuid);
+ 
+ /* Must be initialized before using Bluetooth ble */
+ static RkBtContent bt_content;
+@@ -950,12 +953,15 @@ void send_data(char *uuid)
+ 	}
+ }
+ 
+-static void bt_test_ble_request_data_callback(const char *uuid)
++static char* bt_test_ble_request_data_callback(const char *uuid)
+ {
+-	printf("=== %s uuid: %s===\n", __func__, uuid);
+-	//rk_ble_write(uuid, "Hello Rockchip", strlen("Hello Rockchip"));
++	uint8_t i;
++	for(i=0;i<bt_content.ble_content.chr_cnt;i++)
++	{
++		if(!strcmp(bt_content.ble_content.chr_uuid[i].uuid,uuid))
++		return ATT_READ[i];
++	}
+ 
+-	send_data(uuid);
+ }
+ 
+ static void bt_test_mtu_callback(const char *bd_addr, unsigned int mtu)
