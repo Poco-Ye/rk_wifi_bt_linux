@@ -651,3 +651,25 @@ index 0d80c35..ad53699 100644
                         strncpy(cmdBuf, szBuf, strlen(szBuf) - strlen(input_start) - 1);
 
 ```
+19、kernel/net/bluetooth 注册的接口
+```
+ /sys/kernel/debug/bluetooth/hci0
+ 
+# ls /sys/kernel/debug/bluetooth/hci0/
+ls /sys/kernel/debug/bluetooth/hci0/
+adv_channel_map             features                       remote_oob
+adv_max_interval            force_static_address           rpa_timeout
+adv_min_interval            hardware_error                 sc_only_mode
+auto_accept_delay           hci_revision                   sniff_max_interval
+blacklist                   hci_version                    sniff_min_interval
+conn_info_max_age           identity                       ssp_debug_mode
+conn_info_min_age           identity_resolving_keys        static_address
+conn_latency                idle_timeout                   supervision_timeout
+conn_max_interval           inquiry_cache                  use_debug_keys
+conn_min_interval           link_keys                      uuids
+dev_class                   long_term_keys                 voice_setting
+device_id                   manufacturer                   white_list
+device_list                 quirk_simultaneous_discovery   white_list_size
+discov_interleaved_timeout  quirk_strict_duplicate_filter
+dut_mode                    random_address
+```
