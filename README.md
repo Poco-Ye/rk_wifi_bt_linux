@@ -655,7 +655,7 @@ index 0d80c35..ad53699 100644
 ```
  /sys/kernel/debug/bluetooth/hci0
  
-# ls /sys/kernel/debug/bluetooth/hci0/
+#
 ls /sys/kernel/debug/bluetooth/hci0/
 adv_channel_map             features                       remote_oob
 adv_max_interval            force_static_address           rpa_timeout
