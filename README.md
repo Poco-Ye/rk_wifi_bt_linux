@@ -31,6 +31,24 @@ make savedefconfig
 ./usr/bin/deviceio_test
 
 
+bluez打开log
+diff --git a/DeviceIO/src/utility/slog.h b/DeviceIO/src/utility/slog.h
+index b5890c9..e4f6c9d 100644
+--- a/DeviceIO/src/utility/slog.h
++++ b/DeviceIO/src/utility/slog.h
+@@ -7,7 +7,7 @@ extern "C" {
+ #endif
+
+ #define LOG_TAG "BLUEZ_LOG"
+-#define SYSLOG_DEBUG
++//#define SYSLOG_DEBUG
+
+ #ifdef SYSLOG_DEBUG
+ #define pr_debug(fmt, ...)             syslog(LOG_DEBUG, fmt, ##__VA_ARGS__)
+
+
+
+博通打开log
 --- a/3rdparty/embedded/bsa_examples/linux/app_common/include/app_utils.h
 +++ b/3rdparty/embedded/bsa_examples/linux/app_common/include/app_utils.h
 @@ -30,7 +30,7 @@
