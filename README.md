@@ -691,3 +691,17 @@ device_list                 quirk_simultaneous_discovery   white_list_size
 discov_interleaved_timeout  quirk_strict_duplicate_filter
 dut_mode                    random_address
 ```
+20、Bluez debug
+```
+package/bluez5_utils/bluez5_utils.mk
+@@ -19,7 +19,8 @@ BLUEZ5_UTILS_CONF_OPTS =      \
+        --enable-tools          \
+        --enable-library        \
+        --disable-cups          \
+-       --enable-deprecated
++       --enable-deprecated     \
++       --enable-debug
+
+ ifeq ($(BR2_PACKAGE_DUERCLIENTSDK),y)
+         BLUEZ5_UTILS_MAKE_OPTS = \
+```
