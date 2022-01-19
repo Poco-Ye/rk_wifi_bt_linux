@@ -47,6 +47,23 @@ index b5890c9..e4f6c9d 100644
  #define pr_debug(fmt, ...)             syslog(LOG_DEBUG, fmt, ##__VA_ARGS__)
 
 
+diff --git a/DeviceIO/bluetooth/bluez/bluez_ctrl.c b/DeviceIO/bluetooth/bluez/bluez_ctrl.c
+index 0b9b957..d5e485a 100644
+--- a/DeviceIO/bluetooth/bluez/bluez_ctrl.c
++++ b/DeviceIO/bluetooth/bluez/bluez_ctrl.c
+@@ -155,7 +155,7 @@ static int _bt_open_server()
+                }
+        }
+
+-#if 0
++#if 1
+        exec_command_system("hcidump -i hci0 -w /data/btsnoop.log &");
+        sleep(1);
+        if (access("/data/btsnoop.log", F_OK)) {
+
+
+
+
 
 博通打开log
 --- a/3rdparty/embedded/bsa_examples/linux/app_common/include/app_utils.h
